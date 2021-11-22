@@ -1,1 +1,3 @@
-# Wrapper library for feature flags in node js microservices
+# rever-node-feature-flags
+
+Wrapper library for feature flags in node js micro services.

@@ -1,0 +1,29 @@
+{
+  "name": "rever-node-feature-flags",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --exit **.spec.js",
+    "test-watch": "mocha --exit --watch **.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reverscore/rever-node-feature-flags.git"
+  },
+  "author": "Rever Inc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reverscore/rever-node-feature-flags/issues"
+  },
+  "homepage": "https://github.com/reverscore/rever-node-feature-flags#readme",
+  "dependencies": {
+    "@optimizely/optimizely-sdk": "^4.7.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "sinon": "^12.0.1",
+    "sinon-chai": "^3.7.0",
+    "mocha": "^9.1.3"
+  }
+}
