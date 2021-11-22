@@ -50,6 +50,8 @@ const getOptimizely = (log, config) => {
     log.info('Feature Flags are loaded')
     log.info('Enabled Feature flags', optimizely.getEnabledFeatures('all'))
   })
+
+  return optimizely
 }
 
 module.exports = (log, config = DEFAULT_CONFIG, flagManagerDependency, serializeEntityID = defaultSerializeEntityID) => {
