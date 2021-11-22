@@ -37,10 +37,7 @@ const defaultSerializeEntityID = (target) => {
   return (target.toString) ? target.toString() : target
 }
 
-module.exports = (log, config = DEFAULT_CONFIG, flagManager = optimizely, serializeEntityID = defaultSerializeEntityID) => {
-  log.setFilename('feature flags')
-  const prefix = config.prefix || DEFAULT_CONFIG.prefix
-
+const getOptimizely = (log, config) => {
   const optimizely = optimizelySDK.createInstance({
     sdkKey: config.flagsEnvironmentKey || DEFAULT_CONFIG.flagsEnvironmentKey,
     datafile: config.datafile || DEFAULT_CONFIG.datafile,
@@ -48,12 +45,18 @@ module.exports = (log, config = DEFAULT_CONFIG, flagManager = optimizely, serial
       updateInterval: config.updateInterval || DEFAULT_CONFIG.updateInterval,
     },
   })
-  
+
   optimizely.onReady().then(() => {
     log.info('Feature Flags are loaded')
     log.info('Enabled Feature flags', optimizely.getEnabledFeatures('all'))
   })
+}
 
+module.exports = (log, config = DEFAULT_CONFIG, flagManagerDependency, serializeEntityID = defaultSerializeEntityID) => {
+  log.setFilename('feature flags')
+  const prefix = config.prefix || DEFAULT_CONFIG.prefix
+  const flagManager = flagManagerDependency ? flagManagerDependency : getOptimizely(log, config)
+  
   const serialize = (value) => {
     if (value === '' || value === true || value === false) return value
     if (typeof value === 'number') return value
